@@ -36,7 +36,7 @@ module.exports = function servePublicFiles () {
     }
   }
 
-  function verifySuccessfulPoisonNullByteExploit (file) {
+  function verifySuccessfulPoisonNullByteExploit (file: string) {
     utils.solveIf(challenges.easterEggLevelOneChallenge, () => { return file.toLowerCase() === 'eastere.gg' })
     utils.solveIf(challenges.forgottenDevBackupChallenge, () => { return file.toLowerCase() === 'package.json.bak' })
     utils.solveIf(challenges.forgottenBackupChallenge, () => { return file.toLowerCase() === 'coupons_2013.md.bak' })
@@ -47,7 +47,7 @@ module.exports = function servePublicFiles () {
         challenges.misplacedSignatureFileChallenge.solved || file.toLowerCase() === 'encrypt.pyc'
     })
   }
-
+  
   function endsWithAllowlistedFileType (param) {
     return utils.endsWith(param, '.md') || utils.endsWith(param, '.pdf') || utils.endsWith(param, '.apk')
   }
