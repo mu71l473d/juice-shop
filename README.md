@@ -24,16 +24,13 @@
 > [But this doesn't have anything to do with juice.](https://twitter.com/coderPatros/status/1199268774626488320)
 > ([@coderPatros' wife](https://twitter.com/coderPatros))
 
-OWASP Juice Shop is probably the most modern and sophisticated insecure web application! It can be used in security
-trainings, awareness demos, CTFs and as a guinea pig for security tools! Juice Shop encompasses vulnerabilities from the
-entire
-[OWASP Top Ten](https://owasp.org/www-project-top-ten) along with many other security flaws found in real-world
-applications!
+The OWASP Kiwa shop (which is based on the OWASP Juice Shop) is probably the most modern and sophisticated insecure web application! It can be used in security
+trainings, awareness demos, CTFs and as a guinea pig for security tools! Juice Shop encompasses vulnerabilities from the entire [OWASP Top Ten](https://owasp.org/www-project-top-ten) along with many other security flaws found in real-world applications!
 
 ![Juice Shop Screenshot Slideshow](screenshots/slideshow.gif)
 
 For a detailed introduction, full list of features and architecture overview please visit the official project page:
-<https://owasp-juice.shop>
+<https://owasp-juice.shop> or for the edited version, Contact René
 
 ## Table of contents
 
@@ -61,21 +58,7 @@ For a detailed introduction, full list of features and architecture overview ple
 ## Setup
 
 > You can find some less common installation variations in
-> [the _Running OWASP Juice Shop_ documentation](https://pwning.owasp-juice.shop/part1/running.html).
-
-### Deploy on Heroku (free ($0/month) dyno)
-
-1. [Sign up to Heroku](https://signup.heroku.com/) and
-   [log in to your account](https://id.heroku.com/login)
-2. Click the button below and follow the instructions
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-> This is the quickest way to get a running instance of Juice Shop! If
-> you have forked this repository, the deploy button will automatically
-> pick up your fork for deployment! As long as you do not perform any
-> DDoS attacks you are free to use any tools or scripts to hack your
-> Juice Shop instance on Heroku!
+> [the _Running OWASP Juice Shop_ documentation](https://pwning.owasp-juice.shop/part1/running.html). This version of the shop uses a custom environment variable in NodeJS. As a parameter you can add "NODE_ENV=kiwa" for the normal setup, or "NODE_ENV=kiwactf" for the ctf version. 
 
 ### From Sources
 
@@ -87,7 +70,7 @@ For a detailed introduction, full list of features and architecture overview ple
    of the repository)
 3. Go into the cloned folder with `cd juice-shop`
 4. Run `npm install` (only has to be done before first start or when you change the source code)
-5. Run `npm start`
+5. Run `npm start` (in the packages.json it was already set to the kiwa default setup)
 6. Browse to <http://localhost:3000>
 
 ### Packaged Distributions
@@ -99,7 +82,7 @@ For a detailed introduction, full list of features and architecture overview ple
 1. Install a 64bit [node.js](#nodejs-version-compatibility) on your Windows, MacOS or Linux machine
 2. Download `juice-shop-<version>_<node-version>_<os>_x64.zip` (or
    `.tgz`) attached to
-   [latest release](https://github.com/juice-shop/juice-shop/releases/latest)
+   [latest release](https://github.com/mu71l473d/juice-shop/releases/latest)
 3. Unpack and `cd` into the unpacked folder
 4. Run `npm start`
 5. Browse to <http://localhost:3000>
@@ -157,9 +140,9 @@ docker run -d -p 80:3000 bkimminich/juice-shop
    [Azure CLI](https://azure.github.io/projects/clis/) **or** login to the [Azure Portal](https://portal.azure.com),
    open the _CloudShell_
    and then choose _Bash_ (not PowerShell).
-2. Create a resource group by running `az group create --name <group name> --location <location name, e.g. "centralus">`
+2. Create a resource group by running `az group create --name <group name> --location <location name, e.g. "westeurope">`
 3. Create a new container by
-   running `az container create --resource-group <group name> --name <container name> --image bkimminich/juice-shop --dns-name-label <dns name label> --ports 3000 --ip-address public`
+   running `az container create --resource-group <group name> --environment-variables 'NODE_ENV'='kiwa' --name <container name> --image mu71l473d/juice-shop --dns-name-label <dns name label> --ports 3000 --ip-address public`
 4. Your container will be available at `http://<dns name label>.<location name>.azurecontainer.io:3000`
 
 ### Google Compute Engine Instance
@@ -207,7 +190,7 @@ offered accordingly.
 | 19.x    | :x:                  | :x:                |                                                   |                                                  |                                                   |
 | 18.x    | :heavy_check_mark:   | :heavy_check_mark: | Windows (`x64`), MacOS (`x64`), Linux (`x64`)     |                                                  |                                                   |
 | 17.x    | (:heavy_check_mark:) | :x:                |                                                   |                                                  |                                                   |
-| 16.x    | :heavy_check_mark:   | :heavy_check_mark: | Windows (`x64`), MacOS (`x64`), Linux (`x64`)     | `latest` (`linux/amd64`, `linux/arm64`)          | `snapshot` (`linux/amd64`, `linux/arm64`)         |
+| 16.x    | :heavy_check_mark:   | :heavy_check_mark: | Windows (`x64`), MacOS (`x64`), Linux (`x64`)     | `latest` (`linux/amd64`)                         | `snapshot` (`linux/amd64`)                        |
 | 15.x    | (:heavy_check_mark:) | :x:                |                                                   |                                                  |                                                   |
 | 14.x    | :heavy_check_mark:   | :heavy_check_mark: | Windows (`x64`), MacOS (`x64`), Linux (`x64`)     | `latest-arm` (`linux/arm/v7`, `linux/arm64`)     | `snapshot-arm` (`linux/arm/v7`, `linux/arm64`)    |
 | <14.x   | :x:                  | :x:                |                                                   |                                                  |                                                   |
