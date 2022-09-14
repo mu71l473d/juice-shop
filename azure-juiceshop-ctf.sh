@@ -5,7 +5,7 @@ FILE="./ctfd-config.yml"
 # Should be unique to your CTF
 CTF_KEY=ThisKiwaShopIs1337
 # Containers will be prefixed with this
-CTF_INSTANCE_PREFIX=kiwashopctf
+CTF_INSTANCE_PREFIX=kiwawebshop
 # No instances of Juice Shop you want
 NO_INSTANCE=1
 # The Azure RG
@@ -13,6 +13,9 @@ AZURE_RG_NAME=fssp-we-rg-kiwashop
 # Azure RG Location
 AZURE_RG_LOCATION="westeurope"
 
+JUICESHOP_DIRECTORY=~/github/juice-shop
+
+AZURE_ACR_REGISTRY=kiwashopregistry
 
 create_juice_shop_containers() {
   echo "Setting up JuiceShop instances"
@@ -24,9 +27,9 @@ create_juice_shop_containers() {
      az container create \
        --resource-group $AZURE_RG_NAME \
        --name $JS_INSTANCE_NAME --dns-name-label $JS_INSTANCE_NAME \
-       --image kiwashopregistry.azurecr.io/samples/kiwashop \
+       --image $AZURE_ACR_REGISTRY.azurecr.io/samples/kiwashop:latest \
        --ports 3000 --ip-address public \
-       -e "CTF_KEY=$CTF_KEY" "NODE_ENV=ctf"   
+       -e "NODE_ENV=kiwa" "CTF_KEY=$CTF_KEY"   
   done  
 }
 
@@ -65,12 +68,25 @@ EOM
   rm $FILE
 }
 
+tag_image() {
+  docker build -t  $AZURE_ACR_REGISTRY.azurecr.io/samples/kiwashop:latest $JUICESHOP_DIRECTORY
+}
+
+push_image_azure() {
+ az acr login --name $AZURE_ACR_REGISTRY
+ docker push $AZURE_ACR_REGISTRY.azurecr.io/samples/kiwashop:latest
+
+}
 
 # 1
-create_azure_resource_group 
+#create_azure_resource_group 
+
+#tag_image
+
+push_image_azure
 # 2
 create_juice_shop_containers
 # 3
-create_ctfd_instance
+#create_ctfd_instance
 # 4
-create_ctfd_config
+#create_ctfd_config

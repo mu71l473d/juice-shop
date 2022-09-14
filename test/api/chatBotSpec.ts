@@ -182,7 +182,7 @@ describe('/chatbot', () => {
             .expect('status', 200)
             .expect('json', 'action', 'response')
             .then(({ body = json.body }) => {
-              expect(body).toContain(`${json.data.name} costs ${json.data.price}¤`)
+              expect(body).toContain(`${json.data.name} costs ${json.data.price}€`)
             })
         })
     })

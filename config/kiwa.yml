@@ -6,10 +6,10 @@ application:
   name: 'OWASP KiwaShop'
   logo: kiwa_logo.png
   favicon: favicon_js.ico
-  theme: bluegrey-lightgreen # Options: bluegrey-lightgreen blue-lightblue deeppurple-amber indigo-pink pink-bluegrey purple-green deeporange-indigo
+  theme: blue-lightblue 
   showVersionNumber: true
   showGitHubLinks: false
-  localBackupEnabled: true
+  localBackupEnabled: false
   numberOfRandomFakeUsers: 0
   altcoinName: KiwaKoin
   privacyContactEmail: donotreply@kiwa-worksh.op
@@ -45,8 +45,7 @@ application:
     linkUrl: 'https://www.youtube.com/watch?v=9PnbKL3wuH4'
   securityTxt:
     contact: 'mailto:donotreply@kiwa-worksh.op'
-    encryption: 'https://keybase.io/bkimminich/pgp_keys.asc?fingerprint=19c01cb7157e4645e9e2c863062a85a8cbfbdcda'
-    acknowledgements: '/#/score-board'
+    encryption: ~
   promotion:
     video: owasp_promo.mp4
     subtitles: owasp_promo.vtt
@@ -72,10 +71,10 @@ application:
       - { uri: 'http://192.168.99.100:3000', proxy: 'http://localmac.owasp-juice.shop' }
       - { uri: 'http://penguin.termina.linux.test:3000', proxy: 'http://localchromeos.owasp-juice.shop' }
 challenges:
-  showSolvedNotifications: true
-  showHints: true
+  showSolvedNotifications: false
+  showHints: false
   showMitigations: true
-  codingChallengesEnabled: solved # Options: never  solved  always
+  codingChallengesEnabled: solved 
   restrictToTutorialsFirst: false
   overwriteUrlForProductTamperingChallenge: 'https://owasp.slack.com'
   xssBonusPayload: '<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/771984076&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>'
@@ -93,6 +92,51 @@ products:
     image: bever.jpg
     reviews:
       - { text: 'One of my favorites!', author: admin }
+  -
+    name: 'Alarm Systems Europe ASE series'
+    price: 178.99
+    deluxePrice: 205.99
+    description: 'Originele IP camera, Zeer veilig.'
+    image: ase101.png
+    reviews:
+      - { text: 'Het is lastig om deze camera veilig in te stellen', author: jelte  }
+      - { text: 'Mocht het product niet bevallen dan mag je het altijd gratis terugsturen.', author: admin }
+  -
+    name: 'Electronica Discounter Airco'
+    price: 550
+    deluxePrice: 599.99
+    description: 'Originele Airco. Erg cool.'
+    image: ElectronicaDiscounterAirco.jpg
+  -
+    name: 'Electronica Discounter Stopcontact'
+    price: 5.50
+    deluxePrice: 5.99
+    description: 'Origineel stopcontact.'
+    image: ElectronicaDiscounterStopcontact.jpg
+  -
+    name: 'Electronica Discounter Osciloscoop'
+    price: 1999
+    deluxePrice: 2599.99
+    description: 'Originele Osciloscoop.'
+    image: ElectronicaDiscounterOsciloscoop.jpg
+  -
+    name: 'Electronica Discounter Multimeter'
+    price: 25
+    deluxePrice: 29.99
+    description: 'Originele Multimeter. Erg spannend.'
+    image: ElectronicaDiscounterMultimeter.jpg  
+  -
+    name: 'Electronica Discounter Contactloos betalen terminal'
+    price: 275
+    deluxePrice: 299.99
+    description: 'Originele terminal.'
+    image: ElectronicaDiscounterCardless.jpg 
+  -
+    name: 'Electronica Discounter Laptop'
+    price: 575
+    deluxePrice: 599.99
+    description: 'Originele laptop.'
+    image: ElectronicaDiscounterLaptop.jpg 
   -
     name: 'Bag Jute'
     description: 'An environmental friendly bag'

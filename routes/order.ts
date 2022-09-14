@@ -94,7 +94,7 @@ module.exports = function placeOrder () {
                 bonus: itemBonus
               }
               basketProducts.push(product)
-              doc.text(`${BasketItem.quantity}x ${req.__(name)} ${req.__('ea.')} ${itemPrice} = ${itemTotal}¤`)
+              doc.text(`${BasketItem.quantity}x ${req.__(name)} ${req.__('ea.')} ${itemPrice} = ${itemTotal}€`)
               doc.moveDown()
               totalPrice += itemTotal
               totalPoints += itemBonus
@@ -105,7 +105,7 @@ module.exports = function placeOrder () {
           let discountAmount = '0'
           if (discount > 0) {
             discountAmount = (totalPrice * (discount / 100)).toFixed(2)
-            doc.text(discount + '% discount from coupon: -' + discountAmount + '¤')
+            doc.text(discount + '% discount from coupon: -' + discountAmount + '€')
             doc.moveDown()
             totalPrice -= parseFloat(discountAmount)
           }
@@ -124,12 +124,12 @@ module.exports = function placeOrder () {
           }
           const deliveryAmount = security.isDeluxe(req) ? deliveryMethod.deluxePrice : deliveryMethod.price
           totalPrice += deliveryAmount
-          doc.text(`${req.__('Delivery Price')}: ${deliveryAmount.toFixed(2)}¤`)
+          doc.text(`${req.__('Delivery Price')}: ${deliveryAmount.toFixed(2)}€`)
           doc.moveDown()
-          doc.font('Helvetica-Bold', 20).text(`${req.__('Total Price')}: ${totalPrice.toFixed(2)}¤`)
+          doc.font('Helvetica-Bold', 20).text(`${req.__('Total Price')}: ${totalPrice.toFixed(2)}€`)
           doc.moveDown()
           doc.font('Helvetica-Bold', 15).text(`${req.__('Bonus Points Earned')}: ${totalPoints}`)
-          doc.font('Times-Roman', 15).text(`(${req.__('The bonus points from this order will be added 1:1 to your wallet ¤-fund for future purchases!')}`)
+          doc.font('Times-Roman', 15).text(`(${req.__('The bonus points from this order will be added 1:1 to your wallet €-fund for future purchases!')}`)
           doc.moveDown()
           doc.moveDown()
           doc.font('Times-Roman', 15).text(req.__('Thank you for your order!'))
