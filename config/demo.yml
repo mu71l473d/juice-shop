@@ -4,7 +4,7 @@ server:
 application:
   domain: electronicadiscounter.com
   name: 'Electronica Discounter'
-  logo: undefined.png
+  logo: ed_logo.png
   favicon: favicon_js.ico
   theme: bluegrey-lightgreen # Options: bluegrey-lightgreen blue-lightblue deeppurple-amber indigo-pink pink-bluegrey purple-green deeporange-indigo
   showVersionNumber: false
