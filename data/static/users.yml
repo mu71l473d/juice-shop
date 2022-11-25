@@ -12,11 +12,11 @@
   address:
     - fullName: 'Administrator'
       mobileNum: 1234567890
-      zipCode: '4711'
-      streetAddress: '0815 Test Street'
-      city: 'Test'
-      state: 'Test'
-      country: 'Test'
+      zipCode: '7321'
+      streetAddress: 'Plutoniumweg 2424'
+      city: 'Apeldoorn'
+      state: 'Gelderland'
+      country: 'NL'
   card:
     - fullName: 'Administrator'
       cardNum: 4716190207394368
