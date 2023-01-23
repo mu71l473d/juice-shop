@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -48,9 +48,11 @@ module.exports = function searchProducts () {
             const tableDefinitions = utils.queryResultToJson(data)
             if (tableDefinitions.data?.length) {
               for (let i = 0; i < tableDefinitions.data.length; i++) {
-                solved = solved && utils.containsOrEscaped(dataString, tableDefinitions.data[i].sql)
-                if (!solved) {
-                  break
+                if (tableDefinitions.data[i].sql) {
+                  solved = solved && utils.containsOrEscaped(dataString, tableDefinitions.data[i].sql)
+                  if (!solved) {
+                    break
+                  }
                 }
               }
               if (solved) {

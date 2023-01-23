@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -66,13 +66,13 @@ exports.observeFileUploadMetricsMiddleware = function observeFileUploadMetricsMi
 }
 
 exports.serveMetrics = function serveMetrics () {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     challengeUtils.solveIf(challenges.exposedMetricsChallenge, () => {
       const userAgent = req.headers['user-agent'] ?? ''
       return !userAgent.includes('Prometheus')
     })
     res.set('Content-Type', register.contentType)
-    res.end(register.metrics())
+    res.end(await register.metrics())
   }
 }
 
@@ -143,10 +143,10 @@ exports.observeMetrics = function observeMetrics () {
     labelNames: ['type']
   })
 
-  const updateLoop = setInterval(() => {
+  const updateLoop = () => setInterval(() => {
     try {
       const version = utils.version()
-      const { major, minor, patch } = version.match(/(?<major>[0-9]+).(?<minor>[0-9]+).(?<patch>[0-9]+)/).groups
+      const { major, minor, patch } = version.match(/(?<major>\d+).(?<minor>\d+).(?<patch>\d+)/).groups
       versionMetrics.set({ version, major, minor, patch }, 1)
 
       const challengeStatuses = new Map()

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -10,7 +10,7 @@ module.exports = {
     node: true,
     jasmine: true,
     mocha: true,
-    protractor: true
+    jest: true
   },
   globals: {
     Atomics: 'readonly',

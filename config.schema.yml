@@ -50,6 +50,8 @@ application:
       type: string
     pressKitUrl:
       type: string
+    nftUrl:
+      type: string
     questionnaireUrl:
       type: string
   recyclePage:
@@ -688,6 +690,11 @@ ctf:
       code:
         type: string
     lfrChallenge:
+      name:
+        type: string
+      code:
+        type: string
+    closeNotificationsChallenge:
       name:
         type: string
       code:
