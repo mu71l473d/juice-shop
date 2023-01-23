@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -23,6 +23,10 @@ import { MatIconModule } from '@angular/material/icon'
 class MockSocket {
   on (str: string, callback: Function) {
     callback()
+  }
+
+  emit (a: any, b: any) {
+    return null
   }
 }
 

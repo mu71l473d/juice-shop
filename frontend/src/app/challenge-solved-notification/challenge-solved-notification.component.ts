@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -30,7 +30,7 @@ interface ChallengeSolvedNotification {
   selector: 'app-challenge-solved-notification',
   templateUrl: './challenge-solved-notification.component.html',
   styleUrls: ['./challenge-solved-notification.component.scss']
-})
+  })
 export class ChallengeSolvedNotificationComponent implements OnInit {
   public notifications: ChallengeSolvedNotification[] = []
   public showCtfFlagsInNotifications: boolean = false
@@ -83,6 +83,9 @@ export class ChallengeSolvedNotificationComponent implements OnInit {
 
   closeNotification (index: number, shiftKey: boolean = false) {
     if (shiftKey) {
+      this.ngZone.runOutsideAngular(() => {
+        this.io.socket().emit('verifyCloseNotificationsChallenge', this.notifications)
+      })
       this.notifications = []
     } else {
       this.notifications.splice(index, 1)
@@ -110,7 +113,7 @@ export class ChallengeSolvedNotificationComponent implements OnInit {
   saveProgress () {
     this.challengeService.continueCode().subscribe((continueCode) => {
       if (!continueCode) {
-        throw (new Error('Received invalid continue code from the sever!'))
+        throw (new Error('Received invalid continue code from the server!'))
       }
       const expires = new Date()
       expires.setFullYear(expires.getFullYear() + 1)

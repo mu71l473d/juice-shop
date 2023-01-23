@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Bjoern Kimminich & the OWASP Juice Shop contributors.
+ * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
@@ -14,6 +14,8 @@ const crypto = require('crypto')
 const clarinet = require('clarinet')
 const isDocker = require('is-docker')
 const isHeroku = require('is-heroku')
+// const isGitpod = require('is-gitpod') // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolved
+const isGitpod = () => { return false }
 const isWindows = require('is-windows')
 const logger = require('./logger')
 
@@ -151,7 +153,7 @@ export const randomHexString = (length: number) => {
 }
 
 export const disableOnContainerEnv = () => {
-  return (isDocker() || isHeroku) && !config.get('challenges.safetyOverride')
+  return (isDocker() || isGitpod() || isHeroku) && !config.get('challenges.safetyOverride')
 }
 
 export const disableOnWindowsEnv = () => {
@@ -165,6 +167,8 @@ export const determineDisabledEnv = (disabledEnv: string | string[] | undefined)
     return disabledEnv && (disabledEnv === 'Heroku' || disabledEnv.includes('Heroku')) ? 'Heroku' : null
   } else if (isWindows()) {
     return disabledEnv && (disabledEnv === 'Windows' || disabledEnv.includes('Windows')) ? 'Windows' : null
+  } else if (isGitpod()) {
+    return disabledEnv && (disabledEnv === 'Gitpod' || disabledEnv.includes('Gitpod')) ? 'Gitpod' : null
   }
   return null
 }
@@ -199,4 +203,14 @@ export const thaw = (frozenObject: any) => {
 export const getErrorMessage = (error: unknown) => {
   if (error instanceof Error) return error.message
   return String(error)
+}
+
+export const matchesSystemIniFile = (text: string) => {
+  const match = text.match(/; for 16-bit app support/gi)
+  return match !== null && match.length >= 1
+}
+
+export const matchesEtcPasswdFile = (text: string) => {
+  const match = text.match(/(\w*:\w*:\d*:\d*:\w*:.*)|(Note that this file is consulted directly)/gi)
+  return match !== null && match.length >= 1
 }
