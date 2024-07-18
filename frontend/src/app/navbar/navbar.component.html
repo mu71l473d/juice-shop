@@ -148,6 +148,14 @@
         <span translate>TITLE_APP</span>
       </button>
       
+      <button mat-menu-item [routerLink]="['ftp/kiwashop.apk']" aria-label="Download app">
+        <mat-icon>
+          get_app
+        </mat-icon>
+        <span translate>TITLE_APP</span>
+      </button>
+
+      
       <button mat-menu-item (click) = "goToDataErasurePage()" aria-label="Go to data subject page">
         <mat-icon>
           delete_forever
