@@ -199,6 +199,10 @@ export class NavbarComponent implements OnInit {
     window.location.replace(environment.hostServer + '/dataerasure')
   }
 
+  downloadApp () {
+        window.location.href = '/ftp/kiwashop.apk'
+  }
+
   onToggleSidenav = () => {
     this.sidenavToggle.emit()
   }

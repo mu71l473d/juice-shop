@@ -22,14 +22,6 @@
     <mat-search-bar #searchControl id="searchQuery" (onEnter)="search(searchControl.value)"
                     aria-label="Click to search"></mat-search-bar>
 
-    <button mat-button routerLink="/ftp" style="height:48px;" class="buttons"
-      aria-label="Download the app">
-        <mat-icon>
-            shopping_cart
-        </mat-icon>      
-        <span fxHide.lt-md fxShow> {{"TITLE_APP" | translate}}</span>
-      </button>
-
     <button [matMenuTriggerFor]="userMenu" mat-button style="vertical-align: middle; height:48px;" class="buttons"
             fxHide.lt-md fxShow aria-label="Show/hide account menu" id="navbarAccount">
       <i class="material-icons">
@@ -140,22 +132,15 @@
         </mat-icon>
         <span translate>TITLE_REQUEST_DATA_EXPORT</span>
       </button>
-      
-      <button mat-menu-item (click) ="['ftp/kiwashop.apk']" aria-label="Download app">
-        <mat-icon>
-          get_app
-        </mat-icon>
-        <span translate>TITLE_APP</span>
-      </button>
-      
-      <button mat-menu-item [routerLink]="['ftp/kiwashop.apk']" aria-label="Download app">
-        <mat-icon>
-          get_app
-        </mat-icon>
-        <span translate>TITLE_APP</span>
-      </button>
 
-      
+      <button mat-button(click)= "downloadApp()" style="height:48px;" class="buttons"
+      aria-label="Download the app">
+        <mat-icon>
+          assignment
+        </mat-icon>      
+        <span fxHide.lt-md fxShow> {{"TITLE_APP" | translate}}</span>
+      </button>
+   
       <button mat-menu-item (click) = "goToDataErasurePage()" aria-label="Go to data subject page">
         <mat-icon>
           delete_forever
