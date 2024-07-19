@@ -200,7 +200,12 @@ export class NavbarComponent implements OnInit {
   }
 
   downloadApp () {
-        window.location.href = '/ftp/kiwashop.apk'
+    var anchor=document.createElement('a');
+    anchor.setAttribute('href','/ftp/kiwashop.apk');
+    anchor.setAttribute('download','');
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.parentNode.removeChild(anchor);
   }
 
   onToggleSidenav = () => {

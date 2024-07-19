@@ -16,7 +16,7 @@
       <img [src]="logoSrc" class="logo" alt={{applicationName}}>
       <span fxHide.lt-sm fxShow style="font-size: x-large"> {{applicationName}} </span>
     </button>
-
+    
     <span class="fill-remaining-space"></span>
 
     <mat-search-bar #searchControl id="searchQuery" (onEnter)="search(searchControl.value)"
@@ -95,6 +95,14 @@
             style="font-size: 47px;">{{itemTotal}}</span>
     </button>
 
+    <button mat-button (click) = "downloadApp()" style="height:48px;" class="buttons"
+    aria-label="Download the app">
+      <mat-icon>
+        shopping_cart
+      </mat-icon>      
+      <span fxHide.lt-md fxShow> {{"TITLE_APP" | translate}}</span>
+    </button>
+
     <button [matMenuTriggerFor]="menu" mat-button style="height:48px; width: 48px;" class="buttons"
             aria-label="Language selection menu"
             matTooltip="{{ 'LANGUAGE_SEL_HINT' | translate }}" matTooltipPosition="below">
@@ -132,15 +140,7 @@
         </mat-icon>
         <span translate>TITLE_REQUEST_DATA_EXPORT</span>
       </button>
-
-      <button mat-button(click)= "downloadApp()" style="height:48px;" class="buttons"
-      aria-label="Download the app">
-        <mat-icon>
-          assignment
-        </mat-icon>      
-        <span fxHide.lt-md fxShow> {{"TITLE_APP" | translate}}</span>
-      </button>
-   
+ 
       <button mat-menu-item (click) = "goToDataErasurePage()" aria-label="Go to data subject page">
         <mat-icon>
           delete_forever
